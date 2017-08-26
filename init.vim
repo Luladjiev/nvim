@@ -10,14 +10,23 @@ Plug '~/.local/share/nvim/plugged/onedark.vim/autoload/lightline/colorscheme'
 " Version Control
 Plug 'tpope/vim-fugitive'
 
-call plug#end()
+" File management
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'mileszs/ack.vim'
 
-call deoplete#enable()
+" Code
+Plug 'w0rp/ale'
+Plug 'scrooloose/nerdcommenter'
+
+call plug#end()
 
 " System
 set clipboard+=unnamedplus
-let g:python_host_prog = 'C:\Applications\Python27\python.exe'
+let g:loaded_python_provider = 1
 let g:python3_host_prog = 'C:\Applications\Python3\python.exe'
+
+filetype plugin on
 
 " Search
 set ignorecase
@@ -29,6 +38,9 @@ set tabstop=2
 set shiftwidth=2
 
 " Look 'n Feel
+syntax on
+colorscheme onedark
+
 set number
 set showmatch
 set noshowmode
@@ -36,10 +48,32 @@ set cursorline
 
 let g:lightline = {
       \ 'colorscheme': 'onedark',
+      \ 'active': {
+      \   'left': [ ['mode', 'paste'],
+      \             ['readonly', 'filename', 'git', 'modified'] ]
+      \ },
+      \ 'component_function': {
+      \   'git': 'fugitive#head'
+      \ }
       \}
-
-syntax on
-colorscheme onedark
 
 " Keybindings
 inoremap fd <Esc>
+
+map <C-n> :NERDTreeToggle<CR>
+
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+inoremap <expr><C-g> deoplete#undo_completion()
+inoremap <expr><C-Space>  pumvisible() ? "" : deoplete#manual_complete()
+
+" Deoplete
+call deoplete#enable()
+
+" ALE
+let g:ale_linters = {
+      \ 'javascript': ['eslint']
+      \ }
+
+" Ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
