@@ -50,12 +50,53 @@ let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
-      \             ['readonly', 'filename', 'git', 'modified'] ]
+      \             ['readonly', 'filename', 'git', 'modified'] ],
+      \   'right': [ ['linterok', 'linterwarnings', 'lintererrors'],
+      \              ['percent', 'lineinfo'],
+      \              ['fileformat', 'fileencoding', 'filetype']]
+      \ },
+      \ 'component_expand': {
+      \   'lintererrors': 'LinterStatusErrors',
+      \   'linterwarnings': 'LinterStatusWarnings',
+      \   'linterok': 'LinterStatusOk'
+      \ },
+      \ 'component_type': {
+      \   'lintererrors': 'error',
+      \   'linterwarnings': 'warning'
       \ },
       \ 'component_function': {
-      \   'git': 'fugitive#head'
-      \ }
+      \   'git': 'fugitive#head',
+      \ },
       \}
+
+
+function! LinterStatusErrors() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+
+    return l:all_errors == 0 ? '' : printf('%d', l:all_errors)
+  endfunction
+function! LinterStatusWarnings() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:all_non_errors == 0 ? '' : printf('%d', l:all_non_errors)
+endfunction
+function! LinterStatusOk() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : ''
+  endfunction
+augroup UpdateStatuslineLinter
+    autocmd!
+    autocmd User ALELint call lightline#update()
+augroup END
 
 " Keybindings
 inoremap fd <Esc>
@@ -77,3 +118,8 @@ let g:ale_linters = {
 
 " Ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" CtrlP
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\.git$\|node_modules\|test\|reports\|compiled\|log\|tmp$'
+  \ }
