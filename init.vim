@@ -20,6 +20,7 @@ Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
@@ -62,6 +63,7 @@ colorscheme onedark
 
 set number
 set relativenumber
+set numberwidth=5
 set showmatch
 set noshowmode
 set cursorline
@@ -124,6 +126,7 @@ let mapleader = "\<Space>"
 inoremap fd <Esc>
 
 map <C-n> :NERDTreeToggle<CR>
+
 nnoremap [q :cprev<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
@@ -148,9 +151,8 @@ nnoremap [r :ALEPreviousWrap<CR>
 " Buffer shortcuts
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
-nnoremap <leader>bb :ls<CR>
-nnoremap <leader>bd :bd<CR>
 nnoremap <leader>bD :bd!<CR>
+nnoremap zx :bd<CR>
 
 " Fugitive shortcuts
 nnoremap <leader>gs :Gstatus<CR>
@@ -158,16 +160,29 @@ nnoremap <leader>gl :Glog -10 --<CR>
 nnoremap <leader>gL :Glog -10 -- %<CR>
 nnoremap <leader>gb :Gblame<CR>
 
+" CtrlP shortcuts
+nnoremap <leader>, :CtrlP<CR>
+nnoremap <leader>bb :CtrlPBuffer<CR>
+nnoremap <leader>fr :CtrlPMRU<CR>
+
+" Miscellaneous shortcuts
+nnoremap <leader>jp :%!python -m json.tool<CR>
+
 " Deoplete
 call deoplete#enable()
 
 " ALE
+let g:ale_sign_error = '--'
+let g:ale_sign_warning = '--'
+
 let g:ale_linters = {
       \ 'javascript': ['eslint']
       \ }
 
 " Ack
-let g:ackprg = 'ag --nogroup --nocolor --column'
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 " CtrlP
 let g:ctrlp_custom_ignore = {
@@ -181,3 +196,13 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+
+" Git gutter
+let g:gitgutter_sign_added = '|'
+let g:gitgutter_sign_modified = '|'
+let g:gitgutter_sign_removed = '|'
+let g:gitgutter_sign_removed_first_line = '|'
+let g:gitgutter_sign_modified_removed = '|'
+
+" Easymotion
+let g:EasyMotion_smartcase = 1
