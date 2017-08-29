@@ -1,1 +1,1 @@
-GuiFont! Fira Mono:h14
+GuiFont! Fira Mono:h15
