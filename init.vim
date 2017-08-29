@@ -124,6 +124,10 @@ let mapleader = "\<Space>"
 inoremap fd <Esc>
 
 map <C-n> :NERDTreeToggle<CR>
+nnoremap [q :cprev<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :cfirst<CR>
+nnoremap ]Q :clast<CR>
 
 " Autocomplete shortcuts
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -150,11 +154,9 @@ nnoremap <leader>bD :bd!<CR>
 
 " Fugitive shortcuts
 nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gj :cnext<CR>
-nnoremap <leader>gk :cprev<CR>
-nnoremap <leader>gh :clast<CR>
-nnoremap <leader>gl :cfirst<CR>
-nnoremap <leader>gL :Glog -10 -- %<CR>:copen<CR>
+nnoremap <leader>gl :Glog -10 --<CR>
+nnoremap <leader>gL :Glog -10 -- %<CR>
+nnoremap <leader>gb :Gblame<CR>
 
 " Deoplete
 call deoplete#enable()
