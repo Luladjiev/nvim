@@ -68,8 +68,24 @@ set showmatch
 set noshowmode
 set cursorline
 
+" Lightline
+"let g:lightline.mode_map = {
+		    \ }
 let g:lightline = {
       \ 'colorscheme': 'onedark',
+      \ 'mode_map': {
+      \   'n' : 'N',
+      \   'i' : 'I',
+      \   'R' : 'R',
+      \   'v' : 'V',
+      \   'V' : 'V-L',
+      \   "\<C-v>": 'V-B',
+      \   'c' : 'C',
+      \   's' : 'S',
+      \   'S' : 'S-L',
+      \   "\<C-s>": 'S-B',
+      \   't': 'T',
+      \ },
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
       \             ['readonly', 'filename', 'git', 'modified'] ],
@@ -97,7 +113,7 @@ function! LinterStatusErrors() abort
 
     let l:all_errors = l:counts.error + l:counts.style_error
 
-    return l:all_errors == 0 ? '' : printf('%d', l:all_errors)
+    return l:all_errors == 0 ? '' : printf('✗ %d', l:all_errors)
   endfunction
 function! LinterStatusWarnings() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -105,7 +121,7 @@ function! LinterStatusWarnings() abort
     let l:all_errors = l:counts.error + l:counts.style_error
     let l:all_non_errors = l:counts.total - l:all_errors
 
-    return l:all_non_errors == 0 ? '' : printf('%d', l:all_non_errors)
+    return l:all_non_errors == 0 ? '' : printf('! %d', l:all_non_errors)
 endfunction
 function! LinterStatusOk() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -113,7 +129,7 @@ function! LinterStatusOk() abort
     let l:all_errors = l:counts.error + l:counts.style_error
     let l:all_non_errors = l:counts.total - l:all_errors
 
-    return l:counts.total == 0 ? 'OK' : ''
+    return l:counts.total == 0 ? '✓' : ''
   endfunction
 augroup UpdateStatuslineLinter
     autocmd!
