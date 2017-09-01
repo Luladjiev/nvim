@@ -103,10 +103,15 @@ let g:lightline = {
       \   'linterwarnings': 'warning'
       \ },
       \ 'component_function': {
-      \   'git': 'fugitive#head',
+      \   'git': 'Branch',
       \ },
       \}
 
+function! Branch() abort
+  let l:branch = fugitive#head()
+
+  return branch == '' ? '' : ("\ue0a0" . printf(" %s", branch))
+endfunction
 
 function! LinterStatusErrors() abort
     let l:counts = ale#statusline#Count(bufnr(''))
