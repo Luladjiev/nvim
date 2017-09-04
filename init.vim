@@ -37,10 +37,11 @@ endif
 filetype plugin on
 
 autocmd BufWritePre * %s/\s\+$//e " trim whitespace on save
+autocmd FileType html,css,js runtime! macros/matchit.vim
 
 " Trigger autoread when changing buffers or coming back to vim.
 if has("unix")
-  au FocusGained,BufEnter * :silent! !
+  autocmd FocusGained,BufEnter * :silent! !
 endif
 
 " Scrolling
@@ -155,6 +156,9 @@ nnoremap ]Q :clast<CR>
 
 :nnoremap <leader>t :term<CR>
 
+" Code shortcuts
+noremap <TAB> %
+
 " Autocomplete shortcuts
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
@@ -172,8 +176,8 @@ nnoremap ]r :ALENextWrap<CR>
 nnoremap [r :ALEPreviousWrap<CR>
 
 " Buffer shortcuts
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
+nnoremap <leader><Tab> :bnext<CR>
+nnoremap <leader><S-Tab> :bprevious<CR>
 nnoremap <leader>bD :bd!<CR>
 nnoremap zx :bd<CR>
 
