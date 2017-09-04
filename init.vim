@@ -15,6 +15,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'mileszs/ack.vim'
+Plug 'airblade/vim-rooter'
 
 " Code
 Plug 'w0rp/ale'
@@ -233,3 +234,7 @@ let g:gitgutter_sign_modified_removed = '|'
 
 " Easymotion
 let g:EasyMotion_smartcase = 1
+
+" Vim Rooter
+let g:rooter_silent_chdir = 1
+let g:rooter_resolve_links = 1
