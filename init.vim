@@ -153,6 +153,8 @@ nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
+:nnoremap <leader>t :term<CR>
+
 " Autocomplete shortcuts
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
