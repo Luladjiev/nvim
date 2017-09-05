@@ -112,14 +112,14 @@ let mapleader = "\<Space>"
 
 inoremap fd <Esc>
 
-map <C-n> :NERDTreeToggle<CR>
+map <silent> <C-n> :NERDTreeToggle<CR>
 
-nnoremap [q :cprev<CR>
-nnoremap ]q :cnext<CR>
-nnoremap [Q :cfirst<CR>
-nnoremap ]Q :clast<CR>
+nnoremap <silent> [q :cprev<CR>
+nnoremap <silent> ]q :cnext<CR>
+nnoremap <silent> [Q :cfirst<CR>
+nnoremap <silent> ]Q :clast<CR>
 
-:nnoremap <leader>t :term<CR>
+:nnoremap <silent> <leader>t :term<CR>
 
 " Code shortcuts
 noremap <TAB> %
@@ -137,35 +137,37 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " ALE Movement shortcuts
-nnoremap ]r :ALENextWrap<CR>
-nnoremap [r :ALEPreviousWrap<CR>
+nnoremap <silent> ]r :ALENextWrap<CR>
+nnoremap <silent> [r :ALEPreviousWrap<CR>
 
 " Buffer shortcuts
-nnoremap <leader><Tab> :bnext<CR>
-nnoremap <leader><S-Tab> :bprevious<CR>
-nnoremap <leader>bD :bd!<CR>
-nnoremap zx :bd<CR>
+nnoremap <silent> <leader><Tab> :bnext<CR>
+nnoremap <silent> <leader><S-Tab> :bprevious<CR>
+nnoremap <silent> <leader>bD :bd!<CR>
+nnoremap <silent> zx :bd<CR>
 
 " Fugitive shortcuts
-nnoremap <leader>gf :Gpull<CR>
-nnoremap <leader>gF :Gfetch<CR>
-nnoremap <leader>gp :Gpush<CR>
-nnoremap <leader>gP :call FugitivePush()<CR>
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gf :Gpull<CR>
+nnoremap <silent> <leader>gF :Gfetch<CR>
+nnoremap <silent> <leader>gp :Gpush<CR>
+nnoremap <silent> <leader>gP :call FugitivePush()<CR>
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
 
 " FZF shortcuts
-nnoremap <leader>, :GFiles<CR>
-nnoremap <leader>. :Files<CR>
-nnoremap <leader>? :GFiles?<CR>
-nnoremap <leader>bb :Buffers<CR>
-nnoremap <leader>fr :History<CR>
-nnoremap <leader>gl :Commits<CR>
-nnoremap <leader>gL :BCommots<CR>
-nnoremap <leader>: :Commands<CR>
+nnoremap <silent> <leader>, :GFiles<CR>
+nnoremap <silent> <leader>. :Files<CR>
+nnoremap <silent> <leader>? :GFiles?<CR>
+nnoremap <silent> <leader>bb :Buffers<CR>
+nnoremap <silent> <leader>fr :History<CR>
+nnoremap <silent> <leader>gl :Commits<CR>
+nnoremap <silent> <leader>gL :BCommots<CR>
+nnoremap <silent> <leader>: :Commands<CR>
+nnoremap <silent> <leader>s :Ag <C-R><C-W><CR>
+nnoremap <silent> <leader>S :Ag <CR>
 
 " Miscellaneous shortcuts
-nnoremap <leader>jp :%!python -m json.tool<CR>
+nnoremap <silent> <leader>jp :%!python -m json.tool<CR>
 
 " Deoplete
 call deoplete#enable()
