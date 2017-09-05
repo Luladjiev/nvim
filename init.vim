@@ -96,52 +96,18 @@ let g:lightline = {
       \              ['fileformat', 'fileencoding', 'filetype']]
       \ },
       \ 'component_expand': {
-      \   'lintererrors': 'LinterStatusErrors',
-      \   'linterwarnings': 'LinterStatusWarnings',
-      \   'linterok': 'LinterStatusOk'
+      \   'lintererrors': 'LightlineLinterErrors',
+      \   'linterwarnings': 'LightlineLinterWarnings',
+      \   'linterok': 'LightlineLinterOk'
       \ },
       \ 'component_type': {
       \   'lintererrors': 'error',
       \   'linterwarnings': 'warning'
       \ },
       \ 'component_function': {
-      \   'git': 'Branch',
+      \   'git': 'LightlineBranch',
       \ },
       \}
-
-function! Branch() abort
-  let l:branch = fugitive#head()
-
-  return branch == '' ? '' : ("\ue0a0" . printf(" %s", branch))
-endfunction
-
-function! LinterStatusErrors() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-
-    let l:all_errors = l:counts.error + l:counts.style_error
-
-    return l:all_errors == 0 ? '' : printf('✗ %d', l:all_errors)
-  endfunction
-function! LinterStatusWarnings() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-
-    return l:all_non_errors == 0 ? '' : printf('! %d', l:all_non_errors)
-endfunction
-function! LinterStatusOk() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-
-    return l:counts.total == 0 ? '✓' : ''
-  endfunction
-augroup UpdateStatuslineLinter
-    autocmd!
-    autocmd User ALELint call lightline#update()
-augroup END
 
 " Keybindings
 let mapleader = "\<Space>"
@@ -183,6 +149,9 @@ nnoremap <leader>bD :bd!<CR>
 nnoremap zx :bd<CR>
 
 " Fugitive shortcuts
+nnoremap <leader>gf :Gpull<CR>
+nnoremap <leader>gp :Gpush<CR>
+nnoremap <leader>gP :call FugitivePush()<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gl :Glog -10 --<CR>
 nnoremap <leader>gL :Glog -10 -- %<CR>
@@ -238,3 +207,51 @@ let g:EasyMotion_smartcase = 1
 " Vim Rooter
 let g:rooter_silent_chdir = 1
 let g:rooter_resolve_links = 1
+
+" Custom functions
+function! FugitivePush() abort
+  let l:branch = fugitive#head()
+
+  if l:branch != ''
+    execute "Gpush -u origin " . l:branch
+  endif
+
+  execute "Gpush"
+endfunction
+
+function! LightlineBranch() abort
+  let l:branch = fugitive#head()
+
+  return branch == '' ? '' : ("\ue0a0" . printf(" %s", branch))
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+
+  let l:all_errors = l:counts.error + l:counts.style_error
+
+  return l:all_errors == 0 ? '' : printf('✗ %d', l:all_errors)
+endfunction
+
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+
+  return l:all_non_errors == 0 ? '' : printf('! %d', l:all_non_errors)
+endfunction
+
+function! LightlineLinterOk() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+
+  return l:counts.total == 0 ? '✓' : ''
+endfunction
+
+augroup LightlineUpdateLinter
+  autocmd!
+  autocmd User ALELint call lightline#update()
+augroup END
