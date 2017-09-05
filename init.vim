@@ -12,9 +12,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " File management
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.local/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'mileszs/ack.vim'
 Plug 'airblade/vim-rooter'
 
 " Code
@@ -152,14 +152,17 @@ nnoremap <leader>gF :Gfetch<CR>
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gP :call FugitivePush()<CR>
 nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gl :Glog -10 --<CR>
-nnoremap <leader>gL :Glog -10 -- %<CR>
 nnoremap <leader>gb :Gblame<CR>
 
-" CtrlP shortcuts
-nnoremap <leader>, :CtrlP<CR>
-nnoremap <leader>bb :CtrlPBuffer<CR>
-nnoremap <leader>fr :CtrlPMRU<CR>
+" FZF shortcuts
+nnoremap <leader>, :GFiles<CR>
+nnoremap <leader>. :Files<CR>
+nnoremap <leader>? :GFiles?<CR>
+nnoremap <leader>bb :Buffers<CR>
+nnoremap <leader>fr :History<CR>
+nnoremap <leader>gl :Commits<CR>
+nnoremap <leader>gL :BCommots<CR>
+nnoremap <leader>: :Commands<CR>
 
 " Miscellaneous shortcuts
 nnoremap <leader>jp :%!python -m json.tool<CR>
@@ -174,24 +177,6 @@ let g:ale_sign_warning = '--'
 let g:ale_linters = {
       \ 'javascript': ['eslint']
       \ }
-
-" Ack
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
-" CtrlP
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\.git$\|node_modules\|reports\|compiled\|log\|tmp$'
-  \ }
-
-if executable('ag')
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
 
 " Git gutter
 let g:gitgutter_sign_added = '|'
