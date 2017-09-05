@@ -71,8 +71,6 @@ set noshowmode
 set cursorline
 
 " Lightline
-"let g:lightline.mode_map = {
-		    \ }
 let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ 'mode_map': {
@@ -256,3 +254,6 @@ augroup LightlineUpdateLinter
   autocmd!
   autocmd User ALELint call lightline#update()
 augroup END
+
+" Plugins to keep in mind:
+" osyo-manga/vim-anzu
