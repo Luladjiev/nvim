@@ -119,7 +119,9 @@ nnoremap <silent> ]q :cnext<CR>
 nnoremap <silent> [Q :cfirst<CR>
 nnoremap <silent> ]Q :clast<CR>
 
-:nnoremap <silent> <leader>t :term<CR>
+nnoremap <silent> <leader>t :term<CR>
+
+nnoremap <silent> <leader>sc :noh<CR>
 
 " Code shortcuts
 noremap <TAB> %
@@ -191,6 +193,9 @@ let g:gitgutter_sign_modified_removed = '|'
 
 " Easymotion
 let g:EasyMotion_smartcase = 1
+let g:EasyMotion_do_mapping = 0
+
+nmap <S-Space> <Plug>(easymotion-overwin-f)
 
 " Vim Rooter
 let g:rooter_silent_chdir = 1
