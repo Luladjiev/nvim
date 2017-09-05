@@ -163,8 +163,10 @@ nnoremap <silent> <leader>fr :History<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>gL :BCommots<CR>
 nnoremap <silent> <leader>: :Commands<CR>
-nnoremap <silent> <leader>s :Ag <C-R><C-W><CR>
-nnoremap <silent> <leader>S :Ag <CR>
+nnoremap <silent> <leader>ss :BLines<CR>
+nnoremap <silent> <leader>sS :Lines<CR>
+nnoremap <silent> <leader>sa :Ag <C-R><C-W><CR>
+nnoremap <silent> <leader>sA :Ag <CR>
 
 " Miscellaneous shortcuts
 nnoremap <silent> <leader>jp :%!python -m json.tool<CR>
