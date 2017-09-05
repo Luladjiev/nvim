@@ -150,6 +150,7 @@ nnoremap zx :bd<CR>
 
 " Fugitive shortcuts
 nnoremap <leader>gf :Gpull<CR>
+nnoremap <leader>gF :Gfetch<CR>
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gP :call FugitivePush()<CR>
 nnoremap <leader>gs :Gstatus<CR>
