@@ -9,6 +9,7 @@ Plug '~/.local/share/nvim/plugged/onedark.vim/autoload/lightline/colorscheme'
 
 " Version Control
 Plug 'tpope/vim-fugitive'
+Plug 'jreybert/vimagit'
 Plug 'airblade/vim-gitgutter'
 
 " File management
@@ -107,6 +108,9 @@ let g:lightline = {
       \ },
       \}
 
+" Save the current file as sudo
+cmap w!! w !sudo tee > /dev/null %
+
 " Keybindings
 let mapleader = "\<Space>"
 
@@ -149,11 +153,12 @@ nnoremap <silent> <leader>bD :bd!<CR>
 nnoremap <silent> zx :bd<CR>
 
 " Fugitive shortcuts
-nnoremap <silent> <leader>gf :Gpull<CR>
-nnoremap <silent> <leader>gF :Gfetch<CR>
+nnoremap <silent> <leader>gf :Gpull -pr<CR>
+nnoremap <silent> <leader>gF :Gfetch -p<CR>
 nnoremap <silent> <leader>gp :Gpush<CR>
 nnoremap <silent> <leader>gP :call FugitivePush()<CR>
-nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gs :call magit#show_magit("c")<CR>
+nnoremap <silent> <leader>gS :Gstatus<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
 
 " FZF shortcuts
@@ -213,7 +218,7 @@ function! FugitivePush() abort
 endfunction
 
 function! LightlineBranch() abort
-  let l:branch = fugitive#head()
+  let l:branch = fugitive#head(6)
 
   return branch == '' ? '' : ("\ue0a0" . printf(" %s", branch))
 endfunction
