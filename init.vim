@@ -15,7 +15,7 @@ Plug 'airblade/vim-gitgutter'
 " File management
 Plug 'junegunn/fzf', { 'dir': '~/.local/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'airblade/vim-rooter'
 
 " Code
@@ -127,6 +127,15 @@ nnoremap <silent> <leader>t :term<CR>
 
 nnoremap <silent> <leader>sc :noh<CR>
 
+" Customizing Vim shortcuts
+nnoremap <silent> <leader>fd :e $MYVIMRC<CR>
+nnoremap <silent> <leader>fs :so $MYVIMRC<CR>
+nnoremap <silent> <leader>pi :PlugInstall<CR>
+nnoremap <silent> <leader>pc :PlugClean<CR>
+nnoremap <silent> <leader>pu :PlugUpdate<CR>
+nnoremap <silent> <leader>pU :PlugUpgrade<CR>
+nnoremap <silent> <leader>ps :PlugStatus<CR>
+
 " Code shortcuts
 noremap <TAB> %
 
@@ -157,9 +166,11 @@ nnoremap <silent> <leader>gf :Gpull -pr<CR>
 nnoremap <silent> <leader>gF :Gfetch -p<CR>
 nnoremap <silent> <leader>gp :Gpush<CR>
 nnoremap <silent> <leader>gP :call FugitivePush()<CR>
-nnoremap <silent> <leader>gs :call magit#show_magit("c")<CR>
 nnoremap <silent> <leader>gS :Gstatus<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
+
+" Magit shortcuts
+nnoremap <silent> <leader>gs :call magit#show_magit("c")<CR>
 
 " FZF shortcuts
 nnoremap <silent> <leader>, :GFiles<CR>
@@ -168,7 +179,7 @@ nnoremap <silent> <leader>? :GFiles?<CR>
 nnoremap <silent> <leader>bb :Buffers<CR>
 nnoremap <silent> <leader>fr :History<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
-nnoremap <silent> <leader>gL :BCommots<CR>
+nnoremap <silent> <leader>gL :BCommits<CR>
 nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>ss :BLines<CR>
 nnoremap <silent> <leader>sS :Lines<CR>
