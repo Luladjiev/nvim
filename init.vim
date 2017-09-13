@@ -1,6 +1,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'sjl/gundo.vim'
 
 " Look 'n Feel
 Plug 'itchyny/lightline.vim'
@@ -186,6 +187,9 @@ nnoremap <silent> <leader>sS :Lines<CR>
 nnoremap <silent> <leader>sa :Ag <C-R><C-W><CR>
 nnoremap <silent> <leader>sA :Ag <CR>
 
+" Gundo shortcuts
+nnoremap <silent> <leader>u :GundoToggle<CR>
+
 " Miscellaneous shortcuts
 nnoremap <silent> <leader>jp :%!python -m json.tool<CR>
 
@@ -216,6 +220,9 @@ nmap <S-Space> <Plug>(easymotion-overwin-f)
 " Vim Rooter
 let g:rooter_silent_chdir = 1
 let g:rooter_resolve_links = 1
+
+" Gundo
+let g:gundo_prefer_python3 = 1
 
 " Custom functions
 function! FugitivePush() abort
