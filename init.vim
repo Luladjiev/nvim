@@ -25,6 +25,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 
+" Javascript
+Plug 'pangloss/vim-javascript'
+
 call plug#end()
 
 " System
