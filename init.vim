@@ -1,7 +1,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'mbbill/undotree'
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 " Look 'n Feel
 Plug 'itchyny/lightline.vim'
@@ -43,11 +43,17 @@ endif
 filetype plugin on
 
 autocmd BufWritePre * %s/\s\+$//e " trim whitespace on save
-autocmd FileType html,css,js runtime! macros/matchit.vim
+autocmd FileType html,css,js runtime! macros/matchit.vim " activate matchit
 
 " Trigger autoread when changing buffers or coming back to vim.
 if has("unix")
   autocmd FocusGained,BufEnter * :silent! !
+endif
+
+" Persistent Undo
+if has("persistent_undo")
+    set undodir=~/.local/share/nvim/undodir
+    set undofile
 endif
 
 " Scrolling
