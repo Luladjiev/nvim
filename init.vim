@@ -40,6 +40,8 @@ elseif has('win32')
   let g:python3_host_prog = 'C:\Applications\Python3\python.exe'
 endif
 
+set hidden
+
 filetype plugin on
 
 autocmd BufWritePre * %s/\s\+$//e " trim whitespace on save
