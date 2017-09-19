@@ -116,6 +116,7 @@ let g:lightline = {
       \   'linterwarnings': 'warning'
       \ },
       \ 'component_function': {
+      \   'filename': 'LightlineFilepath',
       \   'git': 'LightlineBranch',
       \ },
       \}
@@ -233,6 +234,30 @@ let g:rooter_silent_chdir = 1
 let g:rooter_resolve_links = 1
 
 " Custom functions
+function! LightlineFilepath() abort
+  let l:path = expand('%')
+
+  if strlen(l:path) < 40
+    return l:path
+  endif
+
+  let l:short_path = ""
+  let l:split_path = split(l:path, "/")
+  let l:i = 1
+
+  for p in l:split_path
+    if l:i == len(l:split_path)
+      let l:short_path = l:short_path . '/' . p
+    elseif strpart(p, 0, 1) == '.'
+      let l:short_path = l:short_path . '/' . strpart(p, 0, 2)
+    else
+      let l:short_path = l:short_path . '/' . strpart(p, 0, 1)
+    endif
+    let l:i += 1
+  endfor
+
+  return l:short_path
+endfunction
 function! FugitivePush() abort
   let l:branch = fugitive#head()
 
