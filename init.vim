@@ -173,7 +173,7 @@ nnoremap <silent> [r :ALEPreviousWrap<CR>
 " Buffer shortcuts
 nnoremap <silent> <leader><Tab> :bnext<CR>
 nnoremap <silent> <leader><S-Tab> :bprevious<CR>
-nnoremap <silent> <leader>bD :bd!<CR>
+nnoremap <silent> zX :bd!<CR>
 nnoremap <silent> zx :bd<CR>
 
 " Fugitive shortcuts
