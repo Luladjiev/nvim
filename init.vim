@@ -310,3 +310,4 @@ augroup END
 
 " Plugins to keep in mind:
 " osyo-manga/vim-anzu
+" mhinz/vim-startify
