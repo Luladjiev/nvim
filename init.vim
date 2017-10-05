@@ -183,7 +183,8 @@ nnoremap <silent> <leader>gF :Gfetch -p<CR>
 nnoremap <silent> <leader>gp :Gpush<CR>
 nnoremap <silent> <leader>gP :call FugitivePush()<CR>
 nnoremap <silent> <leader>gS :Gstatus<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gB :Gblame<CR>
+nnoremap <silent> <leader>gb :call fzf#run({'source': 'git branch --format="%(refname:short)"', 'sink': ':Git checkout'})<CR>
 
 " Magit shortcuts
 nnoremap <silent> <leader>gs :call magit#show_magit("c")<CR>
@@ -309,6 +310,13 @@ augroup LightlineUpdateLinter
   autocmd User ALELint call lightline#update()
 augroup END
 
+" TODO
+"
+" 1. GitBranch
+" - List remote branches as well
+"
+"
 " Plugins to keep in mind:
-" osyo-manga/vim-anzu
-" mhinz/vim-startify
+"
+" 1. osyo-manga/vim-anzu
+" 2. mhinz/vim-startify
