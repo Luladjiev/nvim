@@ -16,6 +16,7 @@ Plug 'airblade/vim-gitgutter'
 " File management
 Plug 'junegunn/fzf', { 'dir': '~/.local/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
+Plug 'pbogut/fzf-mru.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'airblade/vim-rooter'
 
@@ -192,7 +193,7 @@ nnoremap <silent> <leader>, :GFiles<CR>
 nnoremap <silent> <leader>. :Files<CR>
 nnoremap <silent> <leader>? :GFiles?<CR>
 nnoremap <silent> <leader>bb :Buffers<CR>
-nnoremap <silent> <leader>fr :History<CR>
+nnoremap <silent> <leader>fr :FZFMru<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>gL :BCommits<CR>
 nnoremap <silent> <leader>: :Commands<CR>
