@@ -7,6 +7,7 @@ Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim'
 Plug '~/.local/share/nvim/plugged/onedark.vim/autoload/lightline/colorscheme'
+Plug 'mhinz/vim-startify'
 
 " Version Control
 Plug 'tpope/vim-fugitive'
@@ -321,13 +322,9 @@ augroup LightlineUpdateLinter
   autocmd User ALELint call lightline#update()
 augroup END
 
+
 " TODO
-"
-" 1. GitBranch
-" - List remote branches as well
-"
 "
 " Plugins to keep in mind:
 "
 " 1. osyo-manga/vim-anzu
-" 2. mhinz/vim-startify
