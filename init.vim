@@ -143,7 +143,7 @@ nnoremap <silent> ]Q :clast<CR>
 
 nnoremap <silent> <leader>t :term<CR>
 
-nnoremap <silent> <leader>sc :noh<CR>
+nnoremap <silent> <leader>sc :noh<CR>:echo<CR>
 
 " Customizing Vim shortcuts
 nnoremap <silent> <leader>fd :e $MYVIMRC<CR>
