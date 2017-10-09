@@ -186,10 +186,18 @@ nnoremap <silent> <leader>gp :Gpush<CR>
 nnoremap <silent> <leader>gP :call FugitivePush()<CR>
 nnoremap <silent> <leader>gS :Gstatus<CR>
 nnoremap <silent> <leader>gB :Gblame<CR>
-nnoremap <silent> <leader>gb :call fzf#run({
-      \ 'source': 'git branch -av \| grep -v "*\\\|HEAD\\\|/master"',
-      \ 'sink': function('<sid>SwitchBranch')
-      \ })<CR>
+
+if has('win32')
+  nnoremap <silent> <leader>gb :call fzf#run({
+        \ 'source': 'git branch -av \| findstr /V /C:"*" /C:"HEAD" /C:"/master"',
+        \ 'sink': function('<sid>SwitchBranch')
+        \ })<CR>
+else
+  nnoremap <silent> <leader>gb :call fzf#run({
+        \ 'source': 'git branch -av \| grep -v "*\\\|HEAD\\\|/master"',
+        \ 'sink': function('<sid>SwitchBranch')
+        \ })<CR>
+endif
 
 " Magit shortcuts
 nnoremap <silent> <leader>gs :call magit#show_magit("c")<CR>
