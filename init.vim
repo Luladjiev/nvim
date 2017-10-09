@@ -186,8 +186,8 @@ nnoremap <silent> <leader>gP :call FugitivePush()<CR>
 nnoremap <silent> <leader>gS :Gstatus<CR>
 nnoremap <silent> <leader>gB :Gblame<CR>
 nnoremap <silent> <leader>gb :call fzf#run({
-      \ 'source': 'git branch -a --format="%(refname:short)" \| grep -v "HEAD\\\|origin/master"',
-      \ 'sink': function('<sid>switch_branch')
+      \ 'source': 'git branch -av \| grep -v "HEAD\\\|/master"',
+      \ 'sink': function('<sid>SwitchBranch')
       \ })<CR>
 
 " Magit shortcuts
@@ -215,14 +215,6 @@ nnoremap <silent> <leader>jp :%!python -m json.tool<CR>
 
 " Deoplete
 call deoplete#enable()
-
-" Shortcuts helper functions
-function! s:switch_branch(e)
-  let l:branch = split(a:e, "/")[-1]
-  if l:branch != ""
-    execute ':Git checkout ' l:branch
-  endif
-endfunction
 
 " ALE
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
@@ -322,6 +314,12 @@ augroup LightlineUpdateLinter
   autocmd User ALELint call lightline#update()
 augroup END
 
+function! s:SwitchBranch(branch)
+  let l:branch = split(split(a:branch, " ")[0], "/")[-1]
+  if l:branch != ""
+    execute 'terminal git checkout ' l:branch
+  endif
+endfunction
 
 " TODO
 "
