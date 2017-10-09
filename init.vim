@@ -186,7 +186,7 @@ nnoremap <silent> <leader>gP :call FugitivePush()<CR>
 nnoremap <silent> <leader>gS :Gstatus<CR>
 nnoremap <silent> <leader>gB :Gblame<CR>
 nnoremap <silent> <leader>gb :call fzf#run({
-      \ 'source': 'git branch -av \| grep -v "HEAD\\\|/master"',
+      \ 'source': 'git branch -av \| grep -v "*\\\|HEAD\\\|/master"',
       \ 'sink': function('<sid>SwitchBranch')
       \ })<CR>
 
@@ -316,8 +316,9 @@ augroup END
 
 function! s:SwitchBranch(branch)
   let l:branch = split(split(a:branch, " ")[0], "/")[-1]
+
   if l:branch != ""
-    execute 'terminal git checkout ' l:branch
+    execute 'terminal git checkout' l:branch
   endif
 endfunction
 
