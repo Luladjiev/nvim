@@ -59,10 +59,10 @@ function doomed#GitPush()
   let l:branch = fugitive#head()
 
   if l:branch != ''
-    execute 'terminal git -u origin' l:branch
+    execute 'Gpush -u origin' l:branch
   endif
 
-  execute 'terminal git push'
+  execute 'Gpush'
 endfunction
 
 function doomed#GitCheckout(branch)
