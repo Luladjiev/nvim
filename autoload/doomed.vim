@@ -1,4 +1,4 @@
-function doomed#LightlineFilepath() abort
+function doomed#LightlineFilepath()
   let l:path = expand('%')
 
   if strlen(l:path) < 40
@@ -23,13 +23,13 @@ function doomed#LightlineFilepath() abort
   return l:short_path
 endfunction
 
-function doomed#LightlineBranch() abort
+function doomed#LightlineBranch()
   let l:branch = fugitive#head(6)
 
   return branch == '' ? '' : ("\ue0a0" . printf(" %s", branch))
 endfunction
 
-function doomed#LightlineLinterErrors() abort
+function doomed#LightlineLinterErrors()
   let l:counts = ale#statusline#Count(bufnr(''))
 
   let l:all_errors = l:counts.error + l:counts.style_error
@@ -37,7 +37,7 @@ function doomed#LightlineLinterErrors() abort
   return l:all_errors == 0 ? '' : printf('✗ %d', l:all_errors)
 endfunction
 
-function doomed#LightlineLinterWarnings() abort
+function doomed#LightlineLinterWarnings()
   let l:counts = ale#statusline#Count(bufnr(''))
 
   let l:all_errors = l:counts.error + l:counts.style_error
@@ -46,7 +46,7 @@ function doomed#LightlineLinterWarnings() abort
   return l:all_non_errors == 0 ? '' : printf('! %d', l:all_non_errors)
 endfunction
 
-function doomed#LightlineLinterOk() abort
+function doomed#LightlineLinterOk()
   let l:counts = ale#statusline#Count(bufnr(''))
 
   let l:all_errors = l:counts.error + l:counts.style_error
@@ -55,7 +55,7 @@ function doomed#LightlineLinterOk() abort
   return l:counts.total == 0 ? '✓' : ''
 endfunction
 
-function doomed#GitPush() abort
+function doomed#GitPush()
   let l:branch = fugitive#head()
 
   if l:branch != ''
