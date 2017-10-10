@@ -117,17 +117,17 @@ let g:lightline = {
       \              ['fileformat', 'fileencoding', 'filetype']]
       \ },
       \ 'component_expand': {
-      \   'lintererrors': 'LightlineLinterErrors',
-      \   'linterwarnings': 'LightlineLinterWarnings',
-      \   'linterok': 'LightlineLinterOk'
+      \   'lintererrors': 'doomed#LightlineLinterErrors',
+      \   'linterwarnings': 'doomed#LightlineLinterWarnings',
+      \   'linterok': 'doomed#LightlineLinterOk'
       \ },
       \ 'component_type': {
       \   'lintererrors': 'error',
       \   'linterwarnings': 'warning'
       \ },
       \ 'component_function': {
-      \   'filename': 'LightlineFilepath',
-      \   'git': 'LightlineBranch',
+      \   'filename': 'doomed#LightlineFilepath',
+      \   'git': 'doomed#LightlineBranch',
       \ },
       \}
 augroup LightlineUpdateLinter
