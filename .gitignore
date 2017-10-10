@@ -1,2 +1,2 @@
-/autoload
 rplugin.vim
+autoload/plug.vim

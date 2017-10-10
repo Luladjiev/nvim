@@ -45,14 +45,17 @@ endif
 
 set hidden
 
-filetype plugin on
+augroup doomed
+  autocmd!
+augroup doomed
 
-autocmd BufWritePre * %s/\s\+$//e " trim whitespace on save
-autocmd FileType html,css,js runtime! macros/matchit.vim " activate matchit
+autocmd doomed BufWritePre * %s/\s\+$//e " trim whitespace on save
+autocmd doomed FileType html,css,js runtime! macros/matchit.vim " activate matchit
+autocmd doomed TermOpen * startinsert
 
 " Trigger autoread when changing buffers or coming back to vim.
 if has("unix")
-  autocmd FocusGained,BufEnter * :silent! !
+  autocmd doomed FocusGained,BufEnter * :silent! !
 endif
 
 " Persistent Undo
@@ -78,7 +81,9 @@ set foldmethod=syntax
 set foldlevel=99
 
 " Look 'n Feel
-syntax on
+if !exists('g:syntax_on')
+  syntax enable
+endif
 colorscheme onedark
 
 set number
@@ -125,16 +130,20 @@ let g:lightline = {
       \   'git': 'LightlineBranch',
       \ },
       \}
+augroup LightlineUpdateLinter
+  autocmd!
+  autocmd User ALELint call lightline#update()
+augroup END
 
 " Save the current file as sudo
-cmap w!! w !sudo tee > /dev/null %
+cnoremap w!! w !sudo tee > /dev/null %
 
 " Keybindings
 let mapleader = "\<Space>"
 
 inoremap fd <Esc>
 
-map <silent> <C-n> :NERDTreeToggle<CR>
+nnoremap <silent> <C-n> :NERDTreeToggle<CR>
 
 nnoremap <silent> [q :cprev<CR>
 nnoremap <silent> ]q :cnext<CR>
@@ -155,7 +164,7 @@ nnoremap <silent> <leader>pU :PlugUpgrade<CR>
 nnoremap <silent> <leader>ps :PlugStatus<CR>
 
 " Code shortcuts
-map <TAB> %
+nnoremap <TAB> %
 
 " Autocomplete shortcuts
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -183,19 +192,19 @@ nnoremap <silent> zx :bd<CR>
 nnoremap <silent> <leader>gf :Gpull -pr<CR>
 nnoremap <silent> <leader>gF :Gfetch -p<CR>
 nnoremap <silent> <leader>gp :Gpush<CR>
-nnoremap <silent> <leader>gP :call FugitivePush()<CR>
+nnoremap <silent> <leader>gP :call doomed#GitPush()<CR>
 nnoremap <silent> <leader>gS :Gstatus<CR>
 nnoremap <silent> <leader>gB :Gblame<CR>
 
 if has('win32')
   nnoremap <silent> <leader>gb :call fzf#run({
         \ 'source': 'git branch -av \| findstr /V /C:"*" /C:"HEAD" /C:"/master"',
-        \ 'sink': function('<sid>SwitchBranch')
+        \ 'sink': function('doomed#GitCheckout')
         \ })<CR>
 else
   nnoremap <silent> <leader>gb :call fzf#run({
         \ 'source': 'git branch -av \| grep -v "*\\\|HEAD\\\|/master"',
-        \ 'sink': function('<sid>SwitchBranch')
+        \ 'sink': function('doomed#GitCheckout')
         \ })<CR>
 endif
 
@@ -250,88 +259,3 @@ nmap <S-Space> <Plug>(easymotion-overwin-f)
 " Vim Rooter
 let g:rooter_silent_chdir = 1
 let g:rooter_resolve_links = 1
-
-" Custom functions
-function! LightlineFilepath() abort
-  let l:path = expand('%')
-
-  if strlen(l:path) < 40
-    return l:path
-  endif
-
-  let l:short_path = ""
-  let l:split_path = split(l:path, "/")
-  let l:i = 1
-
-  for p in l:split_path
-    if l:i == len(l:split_path)
-      let l:short_path = l:short_path . '/' . p
-    elseif strpart(p, 0, 1) == '.'
-      let l:short_path = l:short_path . '/' . strpart(p, 0, 2)
-    else
-      let l:short_path = l:short_path . '/' . strpart(p, 0, 1)
-    endif
-    let l:i += 1
-  endfor
-
-  return l:short_path
-endfunction
-function! FugitivePush() abort
-  let l:branch = fugitive#head()
-
-  if l:branch != ''
-    execute "Gpush -u origin " . l:branch
-  endif
-
-  execute "Gpush"
-endfunction
-
-function! LightlineBranch() abort
-  let l:branch = fugitive#head(6)
-
-  return branch == '' ? '' : ("\ue0a0" . printf(" %s", branch))
-endfunction
-
-function! LightlineLinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-
-  let l:all_errors = l:counts.error + l:counts.style_error
-
-  return l:all_errors == 0 ? '' : printf('✗ %d', l:all_errors)
-endfunction
-
-function! LightlineLinterWarnings() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-
-  return l:all_non_errors == 0 ? '' : printf('! %d', l:all_non_errors)
-endfunction
-
-function! LightlineLinterOk() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-
-  return l:counts.total == 0 ? '✓' : ''
-endfunction
-
-augroup LightlineUpdateLinter
-  autocmd!
-  autocmd User ALELint call lightline#update()
-augroup END
-
-function! s:SwitchBranch(branch)
-  let l:branch = split(split(a:branch, " ")[0], "/")[-1]
-
-  if l:branch != ""
-    if expand('%') != ''
-      -tabedit %
-    else
-      -tabnew
-    endif
-    execute 'terminal git checkout' l:branch
-  endif
-endfunction
