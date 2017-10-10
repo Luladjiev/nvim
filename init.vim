@@ -327,6 +327,11 @@ function! s:SwitchBranch(branch)
   let l:branch = split(split(a:branch, " ")[0], "/")[-1]
 
   if l:branch != ""
+    if expand('%') != ''
+      -tabedit %
+    else
+      -tabnew
+    endif
     execute 'terminal git checkout' l:branch
   endif
 endfunction
