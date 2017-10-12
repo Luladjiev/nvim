@@ -12,6 +12,7 @@ Plug 'henrik/vim-indexed-search'
 
 " Version Control
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'jreybert/vimagit'
 Plug 'airblade/vim-gitgutter'
 
@@ -195,6 +196,8 @@ nnoremap <silent> <leader>gp :Gpush<CR>
 nnoremap <silent> <leader>gP :call doomed#GitPush()<CR>
 nnoremap <silent> <leader>gS :Gstatus<CR>
 nnoremap <silent> <leader>gB :Gblame<CR>
+nnoremap <silent> <leader>go :Gbrowse<CR>
+vnoremap <silent> <leader>go :Gbrowse<CR>
 
 if has('win32')
   nnoremap <silent> <leader>gb :call fzf#run({
