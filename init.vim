@@ -164,7 +164,7 @@ nnoremap <silent> <leader>pU :PlugUpgrade<CR>
 nnoremap <silent> <leader>ps :PlugStatus<CR>
 
 " Code shortcuts
-nnoremap <TAB> %
+map <TAB> %
 
 " Autocomplete shortcuts
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
