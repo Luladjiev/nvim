@@ -26,7 +26,7 @@ endfunction
 function leet#LightlineBranch()
   let l:branch = fugitive#head(6)
 
-  return branch == '' ? '' : printf(" %s", branch)
+  return branch == '' ? '' : branch
 endfunction
 
 function leet#LightlineLinterErrors()
