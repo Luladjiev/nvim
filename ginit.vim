@@ -1,3 +1,3 @@
 call GuiWindowMaximized(1)
 
-GuiFont! Fira Mono:h15
+GuiFont! Hack:h16
