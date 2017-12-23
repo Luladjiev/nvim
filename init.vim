@@ -35,6 +35,7 @@ Plug 'pangloss/vim-javascript'
 " Typescript
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
+Plug 'Shougo/vimproc.vim'
 
 call plug#end()
 
@@ -144,6 +145,7 @@ cnoremap w!! w !sudo tee > /dev/null %
 
 " Keybindings
 let mapleader = "\<Space>"
+let maplocalleader = "\\"
 
 inoremap fd <Esc>
 
