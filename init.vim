@@ -32,6 +32,10 @@ Plug 'easymotion/vim-easymotion'
 " Javascript
 Plug 'pangloss/vim-javascript'
 
+" Typescript
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
+
 call plug#end()
 
 " System
@@ -41,22 +45,22 @@ let g:loaded_python_provider = 1
 if has('unix')
   let g:python3_host_prog = '/usr/bin/python3'
 elseif has('win32')
-  let g:python3_host_prog = 'C:\Applications\Python3\python.exe'
+  let g:python3_host_prog = 'C:\Applications\Python3.5\python.exe'
 endif
 
 set hidden
 
-augroup doomed
+augroup leet
   autocmd!
-augroup doomed
+augroup leet
 
-autocmd doomed BufWritePre * %s/\s\+$//e " trim whitespace on save
-autocmd doomed FileType html,css,js runtime! macros/matchit.vim " activate matchit
-autocmd doomed TermOpen * startinsert
+autocmd leet BufWritePre * %s/\s\+$//e " trim whitespace on save
+autocmd leet FileType html,css,js runtime! macros/matchit.vim " activate matchit
+autocmd leet TermOpen * startinsert
 
 " Trigger autoread when changing buffers or coming back to vim.
 if has("unix")
-  autocmd doomed FocusGained,BufEnter * :silent! !
+  autocmd leet FocusGained,BufEnter * :silent! !
 endif
 
 " Persistent Undo
@@ -88,7 +92,6 @@ endif
 colorscheme onedark
 
 set number
-set relativenumber
 set numberwidth=5
 set showmatch
 set noshowmode
@@ -118,17 +121,17 @@ let g:lightline = {
       \              ['fileformat', 'fileencoding', 'filetype']]
       \ },
       \ 'component_expand': {
-      \   'lintererrors': 'doomed#LightlineLinterErrors',
-      \   'linterwarnings': 'doomed#LightlineLinterWarnings',
-      \   'linterok': 'doomed#LightlineLinterOk'
+      \   'lintererrors': 'leet#LightlineLinterErrors',
+      \   'linterwarnings': 'leet#LightlineLinterWarnings',
+      \   'linterok': 'leet#LightlineLinterOk'
       \ },
       \ 'component_type': {
       \   'lintererrors': 'error',
       \   'linterwarnings': 'warning'
       \ },
       \ 'component_function': {
-      \   'filename': 'doomed#LightlineFilepath',
-      \   'git': 'doomed#LightlineBranch',
+      \   'filename': 'leet#LightlineFilepath',
+      \   'git': 'leet#LightlineBranch',
       \ },
       \}
 augroup LightlineUpdateLinter
@@ -143,6 +146,8 @@ cnoremap w!! w !sudo tee > /dev/null %
 let mapleader = "\<Space>"
 
 inoremap fd <Esc>
+
+inoremap <C-BS> <C-W>
 
 nnoremap <silent> <C-n> :NERDTreeToggle<CR>
 
@@ -193,26 +198,30 @@ nnoremap <silent> zx :bd<CR>
 nnoremap <silent> <leader>gf :Gpull -pr<CR>
 nnoremap <silent> <leader>gF :Gfetch -p<CR>
 nnoremap <silent> <leader>gp :Gpush<CR>
-nnoremap <silent> <leader>gP :call doomed#GitPush()<CR>
-nnoremap <silent> <leader>gS :Gstatus<CR>
+nnoremap <silent> <leader>gP :call leet#GitPush()<CR>
+nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gB :Gblame<CR>
 nnoremap <silent> <leader>go :Gbrowse<CR>
-vnoremap <silent> <leader>go :Gbrowse<CR>
+
+" GitGutter shortcuts
+nnoremap <silent> <leader>ghs :GitGutterStageHunk<CR>
+nnoremap <silent> <leader>ghu :GitGutterUndoHunk<CR>
+nnoremap <silent> <leader>ghd :GitGutterPreviewHunk<CR>
 
 if has('win32')
   nnoremap <silent> <leader>gb :call fzf#run({
         \ 'source': 'git branch -av \| findstr /V /C:"*" /C:"HEAD" /C:"/master"',
-        \ 'sink': function('doomed#GitCheckout')
+        \ 'sink': function('leet#GitCheckout')
         \ })<CR>
 else
   nnoremap <silent> <leader>gb :call fzf#run({
         \ 'source': 'git branch -av \| grep -v "*\\\|HEAD\\\|/master"',
-        \ 'sink': function('doomed#GitCheckout')
+        \ 'sink': function('leet#GitCheckout')
         \ })<CR>
 endif
 
 " Magit shortcuts
-nnoremap <silent> <leader>gs :call magit#show_magit("c")<CR>
+nnoremap <silent> <leader>gS :call magit#show_magit("c")<CR>
 
 " FZF shortcuts
 nnoremap <silent> <leader>, :GFiles<CR>
@@ -243,7 +252,8 @@ let g:ale_sign_warning = '·'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
 let g:ale_linters = {
-      \ 'javascript': ['eslint']
+      \ 'javascript': ['eslint'],
+      \ 'typescript': ['tslint']
       \ }
 
 " Git gutter
@@ -262,3 +272,19 @@ nmap <S-Space> <Plug>(easymotion-overwin-f)
 " Vim Rooter
 let g:rooter_silent_chdir = 1
 let g:rooter_resolve_links = 1
+
+" FZF
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }

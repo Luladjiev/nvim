@@ -1,4 +1,4 @@
-function doomed#LightlineFilepath()
+function leet#LightlineFilepath()
   let l:path = expand('%')
 
   if strlen(l:path) < 40
@@ -23,13 +23,13 @@ function doomed#LightlineFilepath()
   return l:short_path
 endfunction
 
-function doomed#LightlineBranch()
+function leet#LightlineBranch()
   let l:branch = fugitive#head(6)
 
-  return branch == '' ? '' : ("\ue0a0" . printf(" %s", branch))
+  return branch == '' ? '' : printf(" %s", branch)
 endfunction
 
-function doomed#LightlineLinterErrors()
+function leet#LightlineLinterErrors()
   let l:counts = ale#statusline#Count(bufnr(''))
 
   let l:all_errors = l:counts.error + l:counts.style_error
@@ -37,7 +37,7 @@ function doomed#LightlineLinterErrors()
   return l:all_errors == 0 ? '' : printf('✗ %d', l:all_errors)
 endfunction
 
-function doomed#LightlineLinterWarnings()
+function leet#LightlineLinterWarnings()
   let l:counts = ale#statusline#Count(bufnr(''))
 
   let l:all_errors = l:counts.error + l:counts.style_error
@@ -46,7 +46,7 @@ function doomed#LightlineLinterWarnings()
   return l:all_non_errors == 0 ? '' : printf('! %d', l:all_non_errors)
 endfunction
 
-function doomed#LightlineLinterOk()
+function leet#LightlineLinterOk()
   let l:counts = ale#statusline#Count(bufnr(''))
 
   let l:all_errors = l:counts.error + l:counts.style_error
@@ -55,7 +55,7 @@ function doomed#LightlineLinterOk()
   return l:counts.total == 0 ? '✓' : ''
 endfunction
 
-function doomed#GitPush()
+function leet#GitPush()
   let l:branch = fugitive#head()
 
   if l:branch != ''
@@ -65,7 +65,7 @@ function doomed#GitPush()
   execute 'Gpush'
 endfunction
 
-function doomed#GitCheckout(branch)
+function leet#GitCheckout(branch)
   let l:branch = split(split(a:branch, " ")[0], "/")[-1]
 
   if l:branch != ""
