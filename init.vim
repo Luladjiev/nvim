@@ -48,6 +48,9 @@ elseif has('win32')
   let g:python3_host_prog = 'C:\Applications\Python3.5\python.exe'
 endif
 
+set noswapfile
+set nobackup
+
 set hidden
 
 augroup leet
