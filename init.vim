@@ -33,9 +33,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'pangloss/vim-javascript'
 
 " Typescript
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
-Plug 'Shougo/vimproc.vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript'
 
 call plug#end()
 
