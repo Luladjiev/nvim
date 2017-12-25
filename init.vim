@@ -1,42 +1,6 @@
-call plug#begin('~/.local/share/nvim/plugged')
+runtime plugins.vim
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-
-" Look 'n Feel
-Plug 'itchyny/lightline.vim'
-Plug 'joshdick/onedark.vim'
-Plug '~/.local/share/nvim/plugged/onedark.vim/autoload/lightline/colorscheme'
-Plug 'mhinz/vim-startify'
-Plug 'henrik/vim-indexed-search'
-
-" Version Control
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'jreybert/vimagit'
-Plug 'airblade/vim-gitgutter'
-
-" File management
-Plug 'junegunn/fzf', { 'dir': '~/.local/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'pbogut/fzf-mru.vim'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'airblade/vim-rooter'
-
-" Code
-Plug 'w0rp/ale'
-Plug 'scrooloose/nerdcommenter'
-Plug 'tpope/vim-surround'
-Plug 'easymotion/vim-easymotion'
-
-" Javascript
-Plug 'pangloss/vim-javascript'
-
-" Typescript
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript'
-
-call plug#end()
+runtime lightline.vim
 
 " System
 set clipboard+=unnamedplus
@@ -102,48 +66,6 @@ set showmatch
 set noshowmode
 set cursorline
 
-" Lightline
-let g:lightline = {
-      \ 'colorscheme': 'onedark',
-      \ 'mode_map': {
-      \   'n' : 'N',
-      \   'i' : 'I',
-      \   'R' : 'R',
-      \   'v' : 'V',
-      \   'V' : 'V-L',
-      \   "\<C-v>": 'V-B',
-      \   'c' : 'C',
-      \   's' : 'S',
-      \   'S' : 'S-L',
-      \   "\<C-s>": 'S-B',
-      \   't': 'T',
-      \ },
-      \ 'active': {
-      \   'left': [ ['mode', 'paste'],
-      \             ['readonly', 'filename', 'git', 'modified'] ],
-      \   'right': [ ['linterok', 'linterwarnings', 'lintererrors'],
-      \              ['percent', 'lineinfo'],
-      \              ['fileformat', 'fileencoding', 'filetype']]
-      \ },
-      \ 'component_expand': {
-      \   'lintererrors': 'leet#LightlineLinterErrors',
-      \   'linterwarnings': 'leet#LightlineLinterWarnings',
-      \   'linterok': 'leet#LightlineLinterOk'
-      \ },
-      \ 'component_type': {
-      \   'lintererrors': 'error',
-      \   'linterwarnings': 'warning'
-      \ },
-      \ 'component_function': {
-      \   'filename': 'leet#LightlineFilepath',
-      \   'git': 'leet#LightlineBranch',
-      \ },
-      \}
-augroup LightlineUpdateLinter
-  autocmd!
-  autocmd User ALELint call lightline#update()
-augroup END
-
 " Save the current file as sudo
 cnoremap w!! w !sudo tee > /dev/null %
 
@@ -190,9 +112,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" ALE Movement shortcuts
-nnoremap <silent> ]r :ALENextWrap<CR>
-nnoremap <silent> [r :ALEPreviousWrap<CR>
+nnoremap <silent> ]r :lnext<CR>
+nnoremap <silent> [r :lprev<CR>
 
 " Buffer shortcuts
 nnoremap <silent> <leader><Tab> :bnext<CR>
@@ -252,16 +173,6 @@ nnoremap <silent> <leader>jp :%!python -m json.tool<CR>
 " Deoplete
 call deoplete#enable()
 
-" ALE
-let g:ale_sign_error = '●' " Less aggressive than the default '>>'
-let g:ale_sign_warning = '·'
-let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
-
-let g:ale_linters = {
-      \ 'javascript': ['eslint'],
-      \ 'typescript': ['tslint']
-      \ }
-
 " Git gutter
 let g:gitgutter_sign_added = '|'
 let g:gitgutter_sign_modified = '|'
@@ -294,3 +205,9 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+" Neomake
+let g:neomake_error_sign = {'text': '●'}
+let g:neomake_warning_sign = {'text': '·'}
+
+call neomake#configure#automake('w')

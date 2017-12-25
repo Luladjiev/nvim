@@ -30,29 +30,29 @@ function leet#LightlineBranch()
 endfunction
 
 function leet#LightlineLinterErrors()
-  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:counts = neomake#statusline#LoclistCounts()
 
-  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:errors = get(l:counts, 'E', 0)
 
-  return l:all_errors == 0 ? '' : printf('✗ %d', l:all_errors)
+  return l:errors == 0 ? '' : printf('E:%d', l:errors)
 endfunction
 
 function leet#LightlineLinterWarnings()
-  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:counts = neomake#statusline#LoclistCounts()
 
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
+  let l:errors = get(l:counts, 'E', 0)
+  let l:warnings = get(l:counts, 'W', 0)
 
-  return l:all_non_errors == 0 ? '' : printf('! %d', l:all_non_errors)
+  return l:errors != 0 || l:warnings == 0 ? '' : printf('W:%d', l:warnings)
 endfunction
 
 function leet#LightlineLinterOk()
-  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:counts = neomake#statusline#LoclistCounts()
 
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
+  let l:errors = get(l:counts, 'E', 0)
+  let l:warnings = get(l:counts, 'W', 0)
 
-  return l:counts.total == 0 ? '✓' : ''
+  return l:errors == 0 && l:warnings == 0 ? 'OK' : ''
 endfunction
 
 function leet#GitPush()
