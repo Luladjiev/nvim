@@ -81,6 +81,8 @@ set sidescroll=1
 set ignorecase
 set smartcase
 
+set path+=**
+
 " Typing
 set expandtab
 set tabstop=2
