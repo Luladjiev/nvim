@@ -19,7 +19,6 @@ Plug 'airblade/vim-gitgutter'
 " File management
 Plug 'junegunn/fzf', { 'dir': '~/.local/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'pbogut/fzf-mru.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'airblade/vim-rooter'
 

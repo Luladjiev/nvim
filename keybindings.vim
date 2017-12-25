@@ -83,7 +83,7 @@ nnoremap <silent> <leader>, :GFiles<CR>
 nnoremap <silent> <leader>. :Files<CR>
 nnoremap <silent> <leader>? :GFiles?<CR>
 nnoremap <silent> <leader>bb :Buffers<CR>
-nnoremap <silent> <leader>fr :FZFMru<CR>
+nnoremap <silent> <leader>fr :History<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>gL :BCommits<CR>
 nnoremap <silent> <leader>: :Commands<CR>
