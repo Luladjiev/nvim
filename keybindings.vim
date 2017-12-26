@@ -12,7 +12,19 @@ nnoremap <silent> ]q :cnext<CR>
 nnoremap <silent> [Q :cfirst<CR>
 nnoremap <silent> ]Q :clast<CR>
 
-nnoremap <silent> <leader>t :term<CR>
+nnoremap <silent> <leader>tt :term<CR>
+
+if executable("bash")
+  nnoremap <silent> <leader>tb :e term://bash<CR>
+endif
+
+if executable("zsh")
+  nnoremap <silent> <leader>tz :e term://zsh<CR>
+endif
+
+if executable("powershell")
+  nnoremap <silent> <leader>tp :e term://powershell<CR>
+endif
 
 nnoremap <silent> <leader>sc :noh<CR>:echo<CR>
 
