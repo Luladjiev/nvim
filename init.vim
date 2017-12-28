@@ -67,7 +67,7 @@ set noshowmode
 set cursorline
 
 " Save the current file as sudo
-cnoremap w!! w !sudo tee > /dev/null %
+command WW :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Deoplete
 call deoplete#enable()
@@ -108,5 +108,8 @@ let g:fzf_colors =
 " Neomake
 let g:neomake_error_sign = {'text': '●'}
 let g:neomake_warning_sign = {'text': '·'}
+
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_typescript_enabled_makers = ['tslint']
 
 call neomake#configure#automake('w')
