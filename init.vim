@@ -67,7 +67,7 @@ set noshowmode
 set cursorline
 
 " Save the current file as sudo
-command WW :execute ':silent w !sudo tee % > /dev/null' | :edit!
+command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Deoplete
 let g:deoplete#file#enable_buffer_path = 1
