@@ -70,6 +70,7 @@ set cursorline
 command WW :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Deoplete
+let g:deoplete#file#enable_buffer_path = 1
 call deoplete#enable()
 
 " Git gutter
