@@ -60,6 +60,7 @@ nnoremap <silent> <leader><Tab> :bnext<CR>
 nnoremap <silent> <leader><S-Tab> :bprevious<CR>
 nnoremap <silent> zX :bd!<CR>
 nnoremap <silent> zx :bd<CR>
+nnoremap <silent> <leader>bs :Startify<CR>
 
 " Fugitive shortcuts
 nnoremap <silent> <leader>gf :Gpull -pr<CR>
