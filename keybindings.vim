@@ -43,8 +43,7 @@ map <TAB> %
 " Autocomplete shortcuts
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-inoremap <expr><C-g> deoplete#undo_completion()
-inoremap <expr><C-Space>  pumvisible() ? "" : deoplete#manual_complete()
+imap <C-Space> <Plug>(cm_force_refresh)
 
 " Window movement shortcuts
 nnoremap <C-j> <C-w>j

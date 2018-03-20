@@ -1,6 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'roxma/nvim-completion-manager'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 " Look 'n Feel
@@ -29,10 +29,10 @@ Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 
 " Javascript
-Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'js'] }
 
 " Typescript
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript'
+Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'ts'] }
+Plug 'mhartington/nvim-typescript', { 'for': ['typescript', 'ts'] }
 
 call plug#end()

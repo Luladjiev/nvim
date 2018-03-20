@@ -4,6 +4,7 @@ runtime lightline.vim
 
 " System
 set clipboard+=unnamedplus
+set updatetime=100
 let g:loaded_python_provider = 1
 
 if has('unix')
@@ -69,10 +70,6 @@ set cursorline
 " Save the current file as sudo
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
-" Deoplete
-let g:deoplete#file#enable_buffer_path = 1
-call deoplete#enable()
-
 " Git gutter
 let g:gitgutter_sign_added = '|'
 let g:gitgutter_sign_modified = '|'
@@ -114,3 +111,6 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_typescript_enabled_makers = ['tslint']
 
 call neomake#configure#automake('w')
+
+" Nvim-Completion-Manager
+let g:cm_auto_popup = 0
