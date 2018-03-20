@@ -99,10 +99,9 @@ nnoremap <silent> <leader>fr :History<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>gL :BCommits<CR>
 nnoremap <silent> <leader>: :Commands<CR>
-nnoremap <silent> <leader>ss :BLines<CR>
-nnoremap <silent> <leader>sS :Lines<CR>
-nnoremap <silent> <leader>sa :Ag <C-R><C-W><CR>
-nnoremap <silent> <leader>sA :Ag <CR>
+nnoremap <silent> <leader>sl :BLines<CR>
+nnoremap <silent> <leader>sL :Lines<CR>
+nnoremap <silent> <leader>ss :Rg <C-R><C-W><CR>
 
 " Undo Tree shortcuts
 nnoremap <silent> <leader>u :UndotreeToggle<CR>

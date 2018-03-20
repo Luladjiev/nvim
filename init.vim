@@ -1,10 +1,12 @@
 runtime plugins.vim
 runtime keybindings.vim
+runtime commands.vim
 runtime lightline.vim
 
 " System
 set clipboard+=unnamedplus
 set updatetime=100
+set grepprg=rg\ --vimgrep
 let g:loaded_python_provider = 1
 
 if has('unix')
@@ -66,9 +68,6 @@ set numberwidth=5
 set showmatch
 set noshowmode
 set cursorline
-
-" Save the current file as sudo
-command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Git gutter
 let g:gitgutter_sign_added = '|'
