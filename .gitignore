@@ -1,3 +1,4 @@
 rplugin.vim
 autoload/plug.vim
 .netrwhist
+shada
