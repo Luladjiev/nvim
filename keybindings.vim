@@ -28,9 +28,12 @@ endif
 
 nnoremap <silent> <leader>sc :noh<CR>:echo<CR>
 
-" Customizing Vim shortcuts
-nnoremap <silent> <leader>fd :e $MYVIMRC<CR>
-nnoremap <silent> <leader>fs :so $MYVIMRC<CR>
+" File shortcuts
+nnoremap <silent> <leader>fdd :e $MYVIMRC<CR>
+nnoremap <silent> <leader>fds :so $MYVIMRC<CR>
+nnoremap <silent> <leader>ft :e #<CR>
+
+" Plug shortcuts
 nnoremap <silent> <leader>pi :PlugInstall<CR>
 nnoremap <silent> <leader>pc :PlugClean<CR>
 nnoremap <silent> <leader>pu :PlugUpdate<CR>
@@ -60,6 +63,7 @@ nnoremap <silent> <leader><S-Tab> :bprevious<CR>
 nnoremap <silent> zX :bd!<CR>
 nnoremap <silent> zx :bd<CR>
 nnoremap <silent> <leader>bs :Startify<CR>
+nnoremap <silent> <leader>bk :bufdo bd<CR>
 
 " Fugitive shortcuts
 nnoremap <silent> <leader>gf :Gpull -pr<CR>
