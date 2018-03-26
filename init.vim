@@ -57,7 +57,7 @@ set path+=**
 set expandtab
 set tabstop=2
 set shiftwidth=2
-set foldmethod=syntax
+"set foldmethod=syntax " disabled because of slowing down large javascript files
 set foldlevel=99
 
 " Look 'n Feel
@@ -71,6 +71,8 @@ set numberwidth=5
 set showmatch
 set noshowmode
 set cursorline
+set list
+set listchars=tab:\|\ ,trail:.
 
 " Git gutter
 let g:gitgutter_sign_added = '|'
