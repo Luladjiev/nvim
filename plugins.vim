@@ -22,16 +22,10 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'airblade/vim-rooter'
 
 " Code
+Plug 'sheerun/vim-polyglot'
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
-
-" Javascript
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'js'] }
-
-" Typescript
-Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'ts'] }
-Plug 'mhartington/nvim-typescript', { 'for': ['typescript', 'ts'] }
 
 call plug#end()
