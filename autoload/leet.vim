@@ -40,10 +40,9 @@ endfunction
 function leet#LightlineLinterWarnings()
   let l:counts = neomake#statusline#LoclistCounts()
 
-  let l:errors = get(l:counts, 'E', 0)
   let l:warnings = get(l:counts, 'W', 0)
 
-  return l:errors != 0 || l:warnings == 0 ? '' : printf('W:%d', l:warnings)
+  return l:warnings == 0 ? '' : printf('W:%d', l:warnings)
 endfunction
 
 function leet#LightlineLinterOk()
