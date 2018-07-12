@@ -64,7 +64,7 @@ set foldlevel=99
 if !exists('g:syntax_on')
   syntax enable
 endif
-colorscheme onedark
+colorscheme dracula
 
 set number
 set numberwidth=5

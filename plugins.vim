@@ -5,8 +5,7 @@ Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 " Look 'n Feel
 Plug 'itchyny/lightline.vim'
-Plug 'joshdick/onedark.vim'
-Plug '~/.local/share/nvim/plugged/onedark.vim/autoload/lightline/colorscheme'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'mhinz/vim-startify'
 Plug 'henrik/vim-indexed-search'
 
