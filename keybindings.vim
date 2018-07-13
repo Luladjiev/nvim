@@ -73,6 +73,7 @@ nnoremap <silent> <leader>gP :call leet#GitPush()<CR>
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gB :Gblame<CR>
 nnoremap <silent> <leader>go :Gbrowse<CR>
+vnoremap <silent> <leader>go :Gbrowse<CR>
 
 " GitGutter shortcuts
 nnoremap <silent> <leader>ghs :GitGutterStageHunk<CR>
