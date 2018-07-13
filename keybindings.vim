@@ -106,6 +106,7 @@ nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>sl :BLines<CR>
 nnoremap <silent> <leader>sL :Lines<CR>
 nnoremap <silent> <leader>ss :Rg <C-R><C-W><CR>
+nnoremap <silent> <leader>sS :Rg<CR>
 
 " Undo Tree shortcuts
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
