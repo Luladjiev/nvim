@@ -114,3 +114,6 @@ nnoremap <silent> <leader>u :UndotreeToggle<CR>
 
 " Miscellaneous shortcuts
 nnoremap <silent> <leader>jp :%!python -m json.tool<CR>
+
+" Vim Easymotion
+nmap <silent> <leader><leader> <Plug>(easymotion-overwin-f)

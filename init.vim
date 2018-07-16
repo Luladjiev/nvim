@@ -92,8 +92,6 @@ let g:gitgutter_sign_modified_removed = '|'
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_do_mapping = 0
 
-nmap <S-Space> <Plug>(easymotion-overwin-f)
-
 " Vim Rooter
 let g:rooter_silent_chdir = 1
 let g:rooter_resolve_links = 1
