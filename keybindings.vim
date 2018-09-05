@@ -117,3 +117,6 @@ nnoremap <silent> <leader>jp :%!python -m json.tool<CR>
 
 " Vim Easymotion
 nmap <silent> <leader><leader> <Plug>(easymotion-overwin-f)
+
+" Which-key
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>

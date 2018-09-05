@@ -8,6 +8,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'mhinz/vim-startify'
 Plug 'henrik/vim-indexed-search'
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
 " Version Control
 Plug 'tpope/vim-fugitive'

@@ -125,3 +125,6 @@ call neomake#configure#automake('w')
 
 " Nvim-Completion-Manager
 let g:cm_auto_popup = 0
+
+" Which-key
+set timeoutlen=500
