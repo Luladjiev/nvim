@@ -124,7 +124,7 @@ let g:neomake_logfile = '/tmp/neomake.log'
 call neomake#configure#automake('w')
 
 " Nvim-Completion-Manager
-let g:cm_auto_popup = 0
+let g:cm_auto_popup = 1
 
 " Which-key
 set timeoutlen=500
