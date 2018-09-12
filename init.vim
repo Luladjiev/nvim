@@ -119,6 +119,8 @@ let g:neomake_warning_sign = {'text': '·'}
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_typescript_enabled_makers = ['tslint']
 
+let g:neomake_open_list = 2
+
 let g:neomake_logfile = '/tmp/neomake.log'
 
 call neomake#configure#automake('w')
