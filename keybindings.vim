@@ -57,6 +57,13 @@ nnoremap <C-l> <C-w>l
 nnoremap <silent> ]r :lnext<CR>
 nnoremap <silent> [r :lprev<CR>
 
+" Tab shortcuts
+nnoremap <silent> <leader>tt :tabnew<CR>
+nnoremap <silent> <leader>tn :tabnext<CR>
+nnoremap <silent> <leader>tp :tabprev<CR>
+nnoremap <silent> <leader>tc :tabclose<CR>
+nnoremap <silent> <leader>tm :tabmove
+
 " Buffer shortcuts
 nnoremap <silent> <leader><Tab> :bnext<CR>
 nnoremap <silent> <leader><S-Tab> :bprevious<CR>
