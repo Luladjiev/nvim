@@ -1,6 +1,23 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'roxma/nvim-completion-manager'
+" Autocompletion
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+
+if has('unix')
+  Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'bash install.sh',
+        \ }
+elseif has('win32')
+  Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'powershell -executionpolicy bypass -File install.ps1',
+        \ }
+endif
+
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 " Look 'n Feel

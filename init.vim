@@ -2,6 +2,7 @@ runtime plugins.vim
 runtime keybindings.vim
 runtime commands.vim
 runtime lightline.vim
+runtime completion.vim
 
 " System
 set clipboard+=unnamedplus
@@ -124,9 +125,6 @@ let g:neomake_open_list = 2
 let g:neomake_logfile = '/tmp/neomake.log'
 
 call neomake#configure#automake('w')
-
-" Nvim-Completion-Manager
-let g:cm_auto_popup = 1
 
 " Which-key
 set timeoutlen=500
