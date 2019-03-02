@@ -122,7 +122,13 @@ let g:neomake_typescript_enabled_makers = ['tslint']
 
 let g:neomake_open_list = 2
 
-let g:neomake_logfile = '/tmp/neomake.log'
+let temp_folder = '/tmp'
+
+if has('win32')
+  let temp_folder = $TEMP
+endif
+
+let g:neomake_logfile = temp_folder . '/neomake.log'
 
 call neomake#configure#automake('w')
 
