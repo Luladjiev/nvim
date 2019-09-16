@@ -134,3 +134,6 @@ call neomake#configure#automake('w')
 
 " Which-key
 set timeoutlen=500
+
+" Show live preview of commands like substitue
+set inccommand=nosplit
