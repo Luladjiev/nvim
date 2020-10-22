@@ -72,7 +72,7 @@ if exists('$TMUX')
 endif
 set termguicolors
 set background=dark
-colorscheme dracula
+colorscheme night-owl
 
 set number
 set numberwidth=5

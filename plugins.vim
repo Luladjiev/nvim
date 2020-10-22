@@ -22,7 +22,7 @@ Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 " Look 'n Feel
 Plug 'itchyny/lightline.vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'haishanh/night-owl.vim'
 Plug 'mhinz/vim-startify'
 Plug 'henrik/vim-indexed-search'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
